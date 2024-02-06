@@ -11,18 +11,27 @@ import {
 } from '../utilityfunctions';
 
 const TotalHolding = ({open, data}) => {
+    
   const amount = getTotalPL(data).toFixed(2);
   const detailedView = [
-    {name: 'Current Value', value: getTotalCurrentValue(data).toFixed(2)},
-    {name: 'Total Investment', value: getTotalInvestmentValue(data).toFixed(2)},
-    {name: `Today's Profit & Loss`, value: getTodayPL(data).toFixed(2)},
+    {
+      id: 1,
+      name: 'Current Value',
+      value: getTotalCurrentValue(data).toFixed(2),
+    },
+    {
+      id: 2,
+      name: 'Total Investment',
+      value: getTotalInvestmentValue(data).toFixed(2),
+    },
+    {id: 3, name: `Today's Profit & Loss`, value: getTodayPL(data).toFixed(2)},
   ];
   return (
     <View>
       {open ? (
         <View style={styles.detailedView}>
-          {detailedView.map(({name, value}) => (
-            <Row>
+          {detailedView.map(({name, value, id}) => (
+            <Row key={id}>
               <Text style={styles.boldText}>{name} </Text>
               <Text style={styles.medText}>
                 {CURRENCY} {value}

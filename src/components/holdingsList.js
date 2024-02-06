@@ -8,6 +8,7 @@ const HoldingsList = ({holdings}) => {
     <View style={styles.holdingListContainer}>
       <FlatList
         data={holdings}
+        keyExtractor={item => item.symbol}
         renderItem={({item}) => <HoldingCard data={item} />}
         ItemSeparatorComponent={() => <View style={styles.separator} />}
       />
